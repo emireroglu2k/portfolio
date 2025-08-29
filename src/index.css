@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
-
 @import "tailwindcss";
 
 @font-face {
     font-family: "Modern Negra";
-    src: url("/fonts/Modern Negra Demo.ttf") format("truetype");
+    src: url("/fonts/Bohemian Soul.otf") format("truetype");
 }
 
 @theme {
@@ -18,23 +17,15 @@
 html,
 body {
     width: 100%;
-    background-color: black;
+    background-color: #131111;
     color: white;
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Keep this, it's generally good */
 }
 
-@utility flex-center {
-    @apply flex justify-center items-center;
-}
-
-@utility col-center {
-    @apply flex flex-col justify-center items-center;
-}
-
-@utility abs-center {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
-}
+@utility flex-center { @apply flex justify-center items-center; }
+@utility col-center { @apply flex flex-col justify-center items-center; }
+@utility abs-center { @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2; }
 
 @utility text-gradient {
     background: linear-gradient(to bottom, #ffffff, #898989);
@@ -44,12 +35,7 @@ body {
 }
 
 @utility radial-gradient {
-    background: radial-gradient(
-            circle at center,
-            #434343 0%,
-            #000 50%,
-            transparent 100%
-    );
+    background: radial-gradient(circle at center, #434343 0%, #000 50%, transparent 100%);
 }
 
 @utility masked-img {
@@ -59,318 +45,221 @@ body {
     mask-size: 50%;
 }
 
-@layer components {
-    main {
-        @apply w-full overflow-x-hidden;
+@layer utilities {
+    .custom-tooltip-trigger { position: relative; }
+
+    .custom-tooltip-trigger[data-tooltip]::before,
+    .custom-tooltip-trigger[data-tooltip]::after {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        pointer-events: none;
     }
 
-    nav {
-        @apply fixed z-50 w-full;
+    /* Tooltip text */
+    .custom-tooltip-trigger[data-tooltip]::before {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+        background-color: var(--color-white-100);
+        color: black;
+        padding: 6px 10px;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-size: 0.875rem;
+        z-index: 100;
+    }
 
-        div {
-            @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto;
+    /* Tooltip arrow */
+    .custom-tooltip-trigger[data-tooltip]::after {
+        content: '';
+        position: absolute;
+        bottom: calc(101%);
+        left: 50%;
+        transform: translateX(-50%) translateY(0);
+        border-width: 5px;
+        border-style: solid;
+        border-color: var(--color-white-100) transparent transparent transparent;
+        z-index: 100;
+    }
+
+    .custom-tooltip-trigger[data-tooltip]:hover::before,
+    .custom-tooltip-trigger[data-tooltip]:hover::after {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0.1s;
+    }
+
+    .bleed-100vw {
+        left: 50%;
+        transform: translateX(-50%); /* center on the viewport */
+        width: 100vw;
+        max-width: 100vw;
+        overflow: clip;   /* prevents the extra scrollbar */
+        contain: paint;
+        pointer-events: none;
+        white-space: nowrap;
+    }
+}
+
+@layer components {
+    main { @apply w-full overflow-x-hidden; }
+
+    /* In your @layer components section, or directly on the nav rule */
+    @layer components {
+        nav {
+            @apply fixed z-50 w-full;
+            /* Apply backdrop-filter directly in CSS */
+            backdrop-filter: blur(10px); /* This will always be present for the nav */
+            background-color: transparent; /* Start transparent, GSAP animates to #000000a0 */
+            transition: background-color 0.5s ease-out; /* Optional CSS transition for a fallback or smoother blend */
+
+            div { @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto; }
+            p { @apply font-modern-negra text-3xl -mb-2; }
+            a { @apply cursor-pointer text-nowrap md:text-base text-sm; }
+            ul { @apply flex-center lg:gap-12 gap-5 md:gap-7; }
+        }
+        /* ... rest of your components ... */
+        .scrolling-experience-bg-l,
+        .scrolling-experience-bg-r {
+            /* Keep these properties, but move absolute positioning and width to a new wrapper */
+            @apply absolute w-full whitespace-nowrap z-0 pointer-events-none text-7xl md:text-8xl font-modern-negra; /* Removed width-related classes */
+            font-family: var(--font-modern-negra);
+            color: transparent; /* Make text transparent to show outline */
+            -webkit-text-stroke: 4px var(--color-white-100); /* White outline */
+            text-stroke: 3px var(--color-white-100);
+            opacity: 0.03; /* Very subtle */
+            user-select: none; /* Prevent selection */
+            line-height: 1; /* Adjust line height for better spacing */
+            will-change: transform; /* Hint for browser optimization */
+            width: 100vw;                /* true viewport width, not container width */
+            max-width: 100vw;            /* guard against Safari quirks */
+            overflow: clip;
+            contain: paint;
         }
 
-        p {
-            @apply font-modern-negra text-3xl -mb-2;
+        /* Position the specific scrolling backgrounds */
+        .scrolling-experience-bg-l {
+            top: 0;
+            left: 0;
+        }
+        .scrolling-experience-bg-r {
+            bottom: 0;
+            right: 0;
         }
 
-        a {
-            @apply cursor-pointer text-nowrap md:text-base text-sm;
+        /* The actual animated content inside */
+        .scrolling-experience-bg-l .scroll-content,
+        .scrolling-experience-bg-r .scroll-content {
+            display: inline-block; /* Essential for text to be side-by-side */
+            /* Make sure the scroll-content is larger than its parent for animation */
+            min-width: 200%;
         }
 
-        ul {
-            @apply flex-center lg:gap-12 gap-7;
+        /* Keyframe animation for infinite scroll */
+        @keyframes scroll-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Changed to -50% because we duplicated content */
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); } /* Start off-screen to the left, half way */
+            100% { transform: translateX(0%); }  /* Move to its original position */
+        }
+
+        /* Apply animation */
+        .scrolling-experience-bg-l .scroll-content {
+            animation: scroll-left 60s linear infinite; /* Adjust duration as needed */
+        }
+
+        .scrolling-experience-bg-r .scroll-content {
+            animation: scroll-right 60s linear infinite;
         }
     }
 
     .noisy {
-        @apply absolute inset-0 size-full bg-[url("/images/noise.png")];
+        @apply absolute inset-0 size-full;
+        background: url("/images/noise.png"), rgba(0, 0, 0, 0.2);
+        background-blend-mode: multiply;
     }
 
     #hero {
-        @apply relative z-10 min-h-dvh w-full border border-transparent;
+        @apply relative z-10 min-h-dvh w-full border border-transparent flex flex-col pt-20 pb-10;
 
-        h1 {
-            @apply md:mt-32 mt-40 text-8xl md:text-[20vw] leading-none text-center font-modern-negra;
+        .title-wrapper {
+            @apply relative;
+            /* Stabilizers to prevent AA flicker while wrapper animates */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform, opacity;
         }
 
-        .left-leaf {
-            @apply absolute left-0 md:top-20 xl:top-36 2xl:top-52 md:bottom-auto -bottom-20 md:w-fit w-1/3;
+        h1.title {
+            @apply mt-10 md:mt-20 text-8xl md:text-[14vw] leading-none text-center font-modern-negra;
+            color: white;
+            /* keep in its own layer */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform;
+            /* better consistency across engines */
+            -webkit-font-smoothing: antialiased;
+            text-rendering: geometricPrecision;
+            paint-order: stroke fill;
         }
 
-        .right-leaf {
-            @apply absolute right-0 md:bottom-0 xl:top-0 2xl:top-12 top-1/2 md:w-fit w-24;
+        h1.title.outline-text-overlay {
+            @apply absolute inset-0 flex justify-center items-center z-2;
+            font-family: var(--font-modern-negra);
+            text-align: center;
+
+            /* overlay stays static; but keep same compositing hints */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            will-change: transform; /* not opacity! */
+            -webkit-font-smoothing: antialiased;
+            text-rendering: geometricPrecision;
+            paint-order: stroke fill;
+            pointer-events: none; /* don’t interfere with selections/hover */
         }
 
         .body {
-            @apply container mx-auto absolute left-1/2 -translate-x-1/2 lg:bottom-20 top-auto md:top-[30vh] flex justify-between items-end px-5;
+            @apply container mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-end px-5 flex-grow mt-10;
 
             .content {
-                @apply flex lg:flex-row flex-col w-full gap-10 justify-between items-center lg:items-end mx-auto;
+                @apply flex flex-col w-full lg:w-fit gap-2 lg:gap-5 items-center lg:items-start text-center lg:text-left mb-10 lg:mb-0;
 
-                p:nth-of-type(2) {
-                    @apply font-modern-negra text-6xl text-yellow max-w-xl;
+                p:nth-of-type(1) { @apply text-lg sm:text-xl lg:text-2xl font-serif text-white/70; }
+
+                p.subtitle {
+                    @apply font-modern-negra text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl text-yellow max-w-4xl leading-tight;
                 }
 
-                p:last-of-type {
-                    @apply 2xl:text-start text-center;
-                }
+                p.subtitle i { @apply hidden lg:inline text-white/70 text-xl sm:text-2xl lg:text-3xl mt-2; }
+            }
 
-                .view-cocktails {
-                    @apply space-y-5 text-lg lg:max-w-2xs md:max-w-xs w-full;
-
-                    p {
-                        @apply text-left;
-                    }
-
-                    a {
-                        @apply font-semibold opacity-80 2xl:text-start text-center hover:text-yellow;
-                    }
-                }
+            .actions {
+                @apply flex flex-col items-center lg:items-center justify-center self-center lg:self-end text-yellow lg:mb-0;
             }
         }
+
+        .btn-resume {
+            @apply cursor-pointer transition-all px-12 py-3 rounded-lg bg-yellow text-black border-b-[4px] inline-flex items-center font-semibold mb-6;
+            border-color: color-mix(in oklab, black 25%, var(--color-yellow));
+        }
+        .btn-resume:hover { background-color: #efe1b8; }
+        .btn-resume:active { background-color: #d6c380; }
+
+        .icon-link { @apply cursor-pointer; color: var(--color-yellow); }
+        .icon-link:hover { color: #efe1b8; }
+        .icon-link:active { color: #d6c380; }
     }
+}
 
-    video {
-        @apply w-full md:h-[80%] h-1/2 absolute bottom-0 left-0 md:object-contain object-bottom object-cover;
-    }
-
-    #cocktails {
-        @apply relative min-h-dvh w-full overflow-hidden;
-
-        #c-left-leaf {
-            @apply absolute left-0 md:bottom-0 md:top-auto -top-20 md:w-fit w-1/3;
-        }
-
-        #c-right-leaf {
-            @apply absolute right-0 md:bottom-0 md:top-auto -top-20 md:w-fit w-1/3;
-        }
-
-        .list {
-            @apply container mx-auto relative z-10 flex md:flex-row flex-col justify-between items-start gap-20 pt-40 2xl:px-0 px-5;
-
-            .popular {
-                @apply space-y-8 w-full md:w-fit;
-            }
-
-            .loved {
-                @apply space-y-8 w-full md:w-fit pb-20 md:pb-0;
-            }
-
-            h2 {
-                @apply text-xl font-medium;
-            }
-
-            ul {
-                @apply space-y-8;
-
-                li {
-                    @apply flex justify-between items-start;
-
-                    h3 {
-                        @apply font-modern-negra 2xl:text-3xl text-xl text-yellow;
-                    }
-
-                    p {
-                        @apply text-sm;
-                    }
-
-                    span {
-                        @apply text-xl font-medium;
-                    }
-                }
-            }
-        }
-    }
-
-    #about {
-        @apply min-h-screen py-28 2xl:px-0 px-5 container mx-auto;
-
-        .content {
-            @apply grid grid-cols-1 lg:grid-cols-12 gap-5;
-
-            h2 {
-                @apply text-5xl md:text-6xl font-modern-negra max-w-lg;
-            }
-
-            .sub-content {
-                @apply md:col-span-4 space-y-5 flex flex-col justify-between;
-
-                p {
-                    @apply text-lg;
-                }
-
-                div {
-                    @apply flex flex-col justify-between md:gap-2 gap-5;
-
-                    span {
-                        @apply text-yellow font-bold text-5xl;
-                    }
-                }
-            }
-        }
-
-        .badge {
-            @apply inline-block rounded-full bg-white text-black px-4 py-2 text-sm font-medium mb-8;
-        }
-
-        .top-grid {
-            @apply grid grid-cols-1 xl:grid-cols-12 gap-5 mb-5 md:px-0 px-5;
-
-            > div {
-                @apply rounded-3xl overflow-hidden h-72 relative;
-            }
-
-            img {
-                @apply object-cover w-full h-full;
-            }
-        }
-
-        .bottom-grid {
-            @apply grid grid-cols-1 md:grid-cols-12 gap-5 md:px-0 px-5;
-
-            > div {
-                @apply rounded-3xl overflow-hidden h-72 relative;
-            }
-
-            img {
-                @apply object-cover w-full h-full;
-            }
-        }
-    }
-
-    #art {
-        @apply flex-center flex-col min-h-dvh p-5 mt-20 relative radial-gradient;
-
-        h2 {
-            @apply relative md:text-[20vw] text-8xl text-nowrap leading-none font-modern-negra text-center text-[#505050] mb-8;
-        }
-
-        .content {
-            @apply flex md:flex-row flex-col justify-between md:mb-16 md:mt-0 mt-40 gap-10;
-        }
-
-        .cocktail-img {
-            @apply md:w-[60vw] w-full h-[50vh] md:h-[70vh] rounded-4xl overflow-hidden absolute top-0 md:top-1/2 md:-translate-y-1/2 left-1/2 -translate-x-1/2;
-        }
-
-        .masked-container {
-            h2 {
-                @apply text-4xl md:text-5xl font-modern-negra text-center mb-10 text-white mt-32;
-            }
-
-            div {
-                @apply opacity-0 md:px-0 px-5 space-y-5 absolute md:bottom-5 bottom-52 left-1/2 -translate-x-1/2;
-
-                h3 {
-                    @apply md:text-5xl text-2xl text-center font-serif md:w-full w-80 text-white;
-                }
-
-                p {
-                    @apply text-lg text-center;
-                }
-            }
-        }
-    }
-
-    #menu {
-        @apply relative w-full md:mt-40 mt-0 2xl:px-0 px-5 py-20 radial-gradient;
-
-        #m-left-leaf {
-            @apply object-contain absolute -bottom-20 left-0 md:w-fit w-1/3;
-        }
-
-        #m-right-leaf {
-            @apply object-contain absolute -top-40 right-0 md:w-fit w-1/4;
-        }
-
-        .cocktail-tabs {
-            @apply grid md:grid-cols-4 grid-cols-2 md:gap-20 gap-10 sm:mb-32 mb-20 relative z-10 md:max-w-6xl md:mx-auto;
-
-            button {
-                @apply md:text-3xl text-xl pb-2 cursor-pointer hover:text-yellow hover:border-yellow border-b-1 transition-colors font-modern-negra;
-            }
-        }
-
-        .content {
-            @apply flex flex-col justify-between items-center container mx-auto relative;
-
-            .arrows {
-                @apply flex items-center justify-between w-full absolute;
-
-                button {
-                    @apply text-white hover:text-yellow cursor-pointer transition-colors max-w-36;
-
-                    span {
-                        @apply text-3xl font-modern-negra leading-none hidden md:block;
-                    }
-                }
-            }
-        }
-
-        .cocktail {
-            @apply flex-center mt-10;
-
-            img {
-                @apply object-contain h-[60vh];
-            }
-        }
-
-        .recipe {
-            @apply flex max-md:flex-col gap-10 md:items-center justify-between w-full lg:absolute bottom-0;
-
-            .info {
-                @apply space-y-4 lg:translate-y-20;
-
-                #title {
-                    @apply font-modern-negra md:text-6xl text-3xl text-yellow max-w-40;
-                }
-            }
-
-            .details {
-                @apply space-y-5 md:max-w-md text-left;
-
-                h2 {
-                    @apply md:text-5xl text-3xl font-serif;
-                }
-
-                p {
-                    @apply md:text-lg pe-5;
-                }
-            }
-        }
-    }
-
-    #contact {
-        @apply relative md:mt-20 mt-0 px-4 text-center w-full overflow-hidden radial-gradient;
-
-        #f-left-leaf {
-            @apply absolute bottom-0 left-0 pointer-events-none lg:w-fit w-1/3;
-        }
-
-        #f-right-leaf {
-            @apply absolute top-0 right-0 pointer-events-none hidden lg:block;
-        }
-
-        .content {
-            @apply container mx-auto lg:py-14 2xl:py-32 py-16 flex flex-col justify-between gap-10 min-h-dvh;
-
-            h2 {
-                @apply lg:text-6xl 2xl:text-8xl text-5xl font-modern-negra md:translate-y-0 translate-y-5;
-            }
-
-            h3 {
-                @apply uppercase xl:text-base 2xl:text-lg text-base mb-2;
-            }
-
-            p {
-                @apply lg:text-2xl 2xl:text-3xl text-sm;
-            }
-        }
-
-        .drink-img {
-            @apply absolute bottom-0 right-0 lg:w-96 w-1/3 pointer-events-none;
-        }
-    }
+.text-outline-shadow {
+    color: #111;
+    text-shadow:
+            2px 0 0 #fff, -2px 0 0 #fff, 0 1px 0 #fff, 0 -2px 0 #fff,
+            2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
 }
