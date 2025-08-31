@@ -1,51 +1,85 @@
-import React from 'react';
-import {navLinks} from '../../constants/index.js';
-import {useGSAP} from "@gsap/react";
-import gsap from "gsap";
+import React, { useEffect, useRef } from 'react';
+import { navLinks } from '../../constants/index.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
-    useGSAP(() => {
-        const navElement = document.querySelector('nav');
-        if (navElement) { // Ensure nav element exists before creating ScrollTrigger
-            const navTween = gsap.timeline({
-                scrollTrigger: {
-                    trigger: 'nav',
-                    start: 'bottom top', // When the bottom of the nav hits the top of the viewport
-                    toggleActions: "play none none reverse", // Play on enter, reverse on leave
-                    // You might want to remove scrub if you want an instant change or a timed animation
-                    // scrub: 0.5, // Uncomment if you want a smooth, scrubbed transition
-                }
-            });
+    const navRef = useRef(null);
 
-            // Animate the background color to be darker and more opaque
-            // The backdrop-filter CSS will then blur whatever is behind this semi-transparent background.
-            navTween.to(navElement, {
-                backgroundColor: '#000000a0', // More opaque black for better blur visibility
-                duration: 0.5, // Shorter duration for a snappier change
-                ease: 'power1.out'
-            });
+    // Smooth scroll handler (honors scroll-margin-top)
+    const onNavClick = (e, id) => {
+        e.preventDefault();
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
-            // If you want to animate the blur amount, you'd need a more complex approach,
-            // or animate a custom property and apply it via CSS.
-            // For now, let's assume the blur is always present due to CSS.
-        }
-    }, []); // Empty dependency array for useGSAP
-    // Added an empty dependency array to useGSAP to ensure it runs only once.
+    useEffect(() => {
+        const nav = navRef.current;
+        if (!nav) return;
+
+        // Background color change after leaving the top
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: nav,
+                start: 'bottom top',
+                toggleActions: 'play none none reverse',
+            },
+        }).to(nav, {
+            backgroundColor: '#000000a0',
+            duration: 0.5,
+            ease: 'power1.out',
+        });
+
+        // Active link highlight per section
+        const triggers = [];
+        navLinks.forEach(({ id }) => {
+            const section = document.getElementById(id);
+            const link = nav.querySelector(`a[href="#${id}"]`);
+            if (!section || !link) return;
+
+            const st = ScrollTrigger.create({
+                trigger: section,
+                start: 'top center',
+                end: 'bottom center',
+                onEnter: () => link.classList.add('active'),
+                onEnterBack: () => link.classList.add('active'),
+                onLeave: () => link.classList.remove('active'),
+                onLeaveBack: () => link.classList.remove('active'),
+            });
+            triggers.push(st);
+        });
+
+        // If content/layout changes
+        ScrollTrigger.refresh();
+        return () => triggers.forEach(t => t.kill());
+    }, []);
 
     return (
-        <nav className="fixed z-50 w-full backdrop-blur-sm transition-colors duration-500 ease-out">
-            <div>
-                <a href="#home" className="flex items-center gap-2">
-                    <p>Emir Eroglu</p>
+        <nav
+            ref={navRef}
+            className="fixed z-50 w-full backdrop-blur-sm transition-colors duration-500 ease-out"
+            style={{ height: 'var(--nav-h)' }}
+        >
+            <div className="flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto">
+                <a href="#hero" onClick={(e) => onNavClick(e, 'hero')} className="flex items-center gap-2">
+                    <p className="font-modern-negra text-3xl -mb-2">Emir Eroglu</p>
                 </a>
 
-                <ul>
-                    {navLinks.map((link) => (
-                            <li key={link.id}>
-                                <a href={`#${link.id}`}>{link.title}</a>
-                            </li>
-                        )
-                    )}
+                <ul className="flex-center lg:gap-12 gap-5 md:gap-7">
+                    {navLinks.map(link => (
+                        <li key={link.id}>
+                            <a
+                                href={`#${link.id}`}
+                                onClick={(e) => onNavClick(e, link.id)}
+                                className="cursor-pointer text-nowrap md:text-base text-sm nav-link"
+                                aria-current={undefined /* set by JS via .active */}
+                            >
+                                {link.title}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </nav>

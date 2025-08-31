@@ -179,7 +179,7 @@ const Hero = () => {
             <video
                 id="hero-video" // Added an ID for direct query
                 className="absolute inset-0 w-full h-full object-cover -z-10 opacity-50"
-                src="public/videos/gradientBG.mp4"
+                src="/videos/gradientBG.mp4"
                 autoPlay
                 loop
                 muted
