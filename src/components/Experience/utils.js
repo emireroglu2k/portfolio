@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 /* -------------------------------------------Tiny JSON syntax highlighter (safe-ish)-------------------------------------------- */
 export const highlightJson = (jsonString) => {
     const esc = jsonString.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    let h = esc.replace(/"([^"\\]|.)*"/g, (m) => `<span class="json-string">${m}</span>`);
+    // Highlight **...** as .json-number
+    let h = esc.replace(/\*\*([^*]+)\*\*/g, (m, g1) => `<span class="json-highlight-green">${g1}</span>`);
+    h = h.replace(/"([^"\\]|.)*"/g, (m) => `<span class="json-string">${m}</span>`);
     h = h.replace(/\b-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b/g, (m) => `<span class="json-number">${m}</span>`);
     h = h.replace(/(true|false|null)\b/g, (m) => `<span class="json-boolean-null">${m}</span>`);
     h = h.replace(/[{}]/g, (m) => `<span class="json-brace">${m}</span>`);

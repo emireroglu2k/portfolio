@@ -170,13 +170,13 @@ const Experience = () => {
     // ---------- render ----------
     return (
         <section id="experience" ref={sectionRef} className="relative z-10 w-full py-20 px-5 experience-section">
-            {/* Background Scrolling Text - Right (top) */}
-            <div className="scrolling-text-bg-r absolute top-0 bleed-100vw">
+            {/* Background Scrolling Text - Left */}
+            <div className="scrolling-text-bg-l absolute top-0 bleed-100vw">
                 <div className="scroll-content"><span>{scrollingTextContent}</span><span>{scrollingTextContent}</span></div>
             </div>
 
-            {/* Background Scrolling Text - Left (bottom) */}
-            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100vw">
+            {/* Background Scrolling Text - Right */}
+            <div className="scrolling-text-bg-r absolute bottom-0 bleed-100vw">
                 <div className="scroll-content"><span>{scrollingTextContent}</span><span>{scrollingTextContent}</span></div>
             </div>
 

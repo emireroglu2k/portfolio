@@ -341,7 +341,7 @@ li strong {
 }
 
 .json-number {
-    color: #b5cea8; /* Light green for numbers */
+    color: #ce9178; /* Light green for numbers */
 }
 
 .json-boolean-null {
@@ -349,17 +349,17 @@ li strong {
 }
 
 .json-brace {
-    color: #c586c0; /* VSCode purple for {} */
+    color: #d4d4d4; /* VSCode purple for {} */
 }
 .json-bracket {
-    color: #e7d393; /* VSCode yellow for [] */
+    color: #d4d4d4; /* VSCode yellow for [] */
 }
 .json-comma {
     color: #d4d4d4; /* Light gray for commas */
 }
 
 .json-highlight-green {
-    color: #4ec98d; /* Green for highlighted text */
+    color: #b5cea8; /* Green for highlighted text */
     font-weight: bold;
 }
 
