@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
-import JsonViz from './JsonViz.jsx';
+import ProjectVisualizer from './ProjectVisualizer.jsx';
 import { getSectionRect, clampPos, clampSize } from './utils.js';
 
-const ExperienceWindow = ({
+const ProjectWindow = ({
                               sectionRef,
                               winPos,
                               setWinPos,
@@ -143,7 +143,7 @@ const ExperienceWindow = ({
     }, [winPos.x, winPos.y, winSize.w, winSize.h, MIN_W, MIN_H, PAD]);
 
 
-    // outside click to close within the Experience section
+    // outside click to close within the Projects section
     useEffect(() => {
         const onSectionDown = (e) => {
             if (!sectionRef.current || !windowRef.current || windowRef.current.contains(e.target)) return;
@@ -219,7 +219,7 @@ const ExperienceWindow = ({
 
             {/* ONLY the card */}
             <div className="h-[calc(100%-34px)] bg-[#0f0f0f] preview-window-content"> {/* Adjusted height to account for larger title bar */}
-                <JsonViz data={activeData} />
+                <ProjectVisualizer data={activeData} />
             </div>
 
             {/* resize handle */}
@@ -234,4 +234,4 @@ const ExperienceWindow = ({
     );
 };
 
-export default ExperienceWindow;
+export default ProjectWindow;

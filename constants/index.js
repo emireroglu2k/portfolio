@@ -76,9 +76,6 @@ export const experiences = [
     },
 ];
 
-// --- keep your other exports above ---
-
-
 export const educationDiplomas = [
     {
         university: "Bilkent University",
@@ -101,5 +98,83 @@ export const educationDiplomas = [
         logo: "images/logos/Ankara_Gazi_Anadolu_Lisesi_Logosu.png",
         signature: "images/signature.png",
         diplomaDate: "17.06.2022"
+    },
+];
+
+// Projects file metadata for Projects.jsx (labels, logos, file names)
+export const projectFiles = [
+    {
+        name: 'bilkent_navigator.json',
+        label: 'Bilkent Navigator',
+        // using React logo as a recognizable stand-in for the MERN stack
+        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg'
+    },
+    {
+        name: 'hotel_booking.json',
+        label: 'Hotel Booking System',
+        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg'
+    },
+    {
+        name: 'bilconnect.json',
+        label: 'Bilconnect',
+        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg'
+    },
+];
+
+// Use widely available CDN logos (devicon/jsdelivr/simpleicons/vectorlogo)
+export const projects = [
+    {
+        name: "Bilkent Navigator",
+        techStack: "MERN Stack",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        date: "December 2024",
+        type: "Campus Tour Booking Web App",
+        description: [
+            "Developed a web application for Bilkent University’s Information Office to streamline campus tour bookings for high school students and counselors.",
+            "Designed features including an automated campus tour request system, real-time **email notifications**, **role-based user interfaces**, **guide calendar management**, and a **guide rating system**.",
+            "Implemented the application using the **MongoDB**, **Express.js**, **React.js**, **Node.js** stack."
+        ],
+        technologies: [
+            { name: "MongoDB",   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+            { name: "Express.js",logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+            { name: "React.js",  logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+            { name: "Node.js",   logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+            { name: "GitHub",    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
+        ],
+    },
+    {
+        name: "Hotel Booking & Management System",
+        techStack: "Flask, SQLite",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+        date: "May 2025",
+        type: "Multi-Role Hotel Booking Platform",
+        description: [
+            "Developed a web application supporting **guest**, **hotel manager**, and **admin** roles to facilitate hotel booking processes.",
+            "Implemented features such as **hotel search and filtering**, **room reservations**, **wallet-based payments**, **review system**, and a **loyalty program**.",
+            "Used **Flask**, **SQLite**, and **Bootstrap 5** throughout the development process."
+        ],
+        technologies: [
+            { name: "Flask",      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" },
+            { name: "SQLite",     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
+            { name: "Bootstrap 5",logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
+            { name: "Python",     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" }
+        ],
+    },
+    {
+        name: "Bilconnect",
+        techStack: "Android (Java)",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+        date: "June 2023",
+        type: "Campus Social App",
+        description: [
+            "Developed an **Android application** aimed at enhancing campus social life at Bilkent University by enabling students to **create and join events**.",
+            "Used **Java**, **Firebase**, **Android Studio**, and **GitHub** throughout the development process."
+        ],
+        technologies: [
+            { name: "Java",           logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+            { name: "Firebase",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+            { name: "Android Studio", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" },
+            { name: "GitHub",         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
+        ],
     },
 ];

@@ -8,11 +8,31 @@ gsap.registerPlugin(ScrollTrigger);
 const Navbar = () => {
     const navRef = useRef(null);
 
-    // Smooth scroll handler (honors scroll-margin-top)
+    // Smooth scroll handler with offset for navbar height
+    // Robust scroll handler: retries scroll after layout shifts
     const onNavClick = (e, id) => {
         e.preventDefault();
         const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!el) return;
+        const nav = navRef.current;
+        const navHeight = nav ? nav.offsetHeight : 0;
+        let attempts = 0;
+        const maxAttempts = 6;
+        const scrollToSection = () => {
+            const rect = el.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const target = rect.top + scrollTop - navHeight - 8;
+            window.scrollTo({ top: target, behavior: 'smooth' });
+            // If not close enough, try again (layout may have shifted)
+            attempts++;
+            setTimeout(() => {
+                const newRect = el.getBoundingClientRect();
+                if (Math.abs(newRect.top - navHeight - 8) > 2 && attempts < maxAttempts) {
+                    requestAnimationFrame(scrollToSection);
+                }
+            }, 80);
+        };
+        scrollToSection();
     };
 
     useEffect(() => {

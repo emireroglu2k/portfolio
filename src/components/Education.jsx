@@ -117,6 +117,7 @@ const Education = () => {
             id="education"
             ref={sectionRef}
             className="relative z-10 w-full min-h-[60vh] py-20 px-5 education-section"
+            style={{ scrollMarginTop: 'calc(var(--nav-h, 72px) + 16px)' }}
         >
             {/* BG scrolling text */}
             <div className="scrolling-text-bg-r absolute top-0 bleed-100vw">
@@ -132,12 +133,12 @@ const Education = () => {
                 </div>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-modern-negra text-yellow text-center mb-16 relative z-10 outline-title">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-modern-negra text-yellow text-center mb-24 relative z-10 outline-title">
                 Education
             </h2>
 
             {/* Diplomas */}
-            <div className="flex flex-col lg:flex-row gap-10 items-center justify-center my-10">
+            <div className="flex flex-col lg:flex-row gap-10 items-center justify-center my-10 mb-32">
                 {educationDiplomas.map((d, i) => (
                     <div
                         key={`${d.university}-${i}`}
