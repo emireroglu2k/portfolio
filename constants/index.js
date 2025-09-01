@@ -7,7 +7,7 @@ export const navLinks = [
     { id: "contact", title: "Contact" },
 ];
 
-// Experience file metadata for Experience.jsx (labels, logos, file names)
+// Projects file metadata for Projects.jsx (labels, logos, file names)
 export const experienceFiles = [
     {
         name: 'alrod_dynamics.json',
@@ -31,7 +31,7 @@ export const experiences = [
     {
         title: "Intern",
         company: "Alrod Dynamics",
-        companyLogo: "public/images/logos/alrod_logo.png",
+        companyLogo: "images/logos/alrod_logo.png",
         duration: "August 2025 – September 2025",
         location: "Ankara, Turkey",
         type: "Computer Vision, Object Detection and Classification",
@@ -47,7 +47,7 @@ export const experiences = [
     {
         title: "Intern",
         company: "ASELSAN",
-        companyLogo: "public/images/logos/aselsan_logo_small.png",
+        companyLogo: "images/logos/aselsan_logo_small.png",
         duration: "July 2025 – August 2025",
         location: "Ankara, Turkey",
         type: "Java Web Development",
@@ -65,7 +65,7 @@ export const experiences = [
     {
         title: "Candidate Engineer",
         company: "ASELSAN",
-        companyLogo: "public/images/logos/aselsan_logo_small.png",
+        companyLogo: "images/logos/aselsan_logo_small.png",
         duration: "February 2025 – June 2025",
         location: "Ankara, Turkey",
         type: "Artificial Intelligence and Natural Language Processing",
@@ -73,5 +73,33 @@ export const experiences = [
             "Conducted research on **AI applications** in **requirements analysis**.",
             "Worked on the integration of **Retrieval-Augmented Generation (RAG)** models."
         ]
+    },
+];
+
+// --- keep your other exports above ---
+
+
+export const educationDiplomas = [
+    {
+        university: "Bilkent University",
+        department: "Computer Science",
+        gpa: "3.46/4.00",
+        startDate: "2022",
+        endDate: "2026 (Expected)",
+        location: "Ankara, Turkey",
+        logo: "images/logos/bilkent_logo.png",
+        signature: "images/signature1.png",
+        diplomaDate: "not yet"
+    },
+    {
+        university: "Gazi Anatolian High School",
+        department: "Science-Mathematics",
+        gpa: "94.93/100",
+        startDate: "2018",
+        endDate: "2022",
+        location: "Ankara, Turkey",
+        logo: "images/logos/Ankara_Gazi_Anadolu_Lisesi_Logosu.png",
+        signature: "images/signature.png",
+        diplomaDate: "17.06.2022"
     },
 ];

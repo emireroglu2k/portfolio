@@ -240,10 +240,13 @@ article:focus-visible {
 article {
     transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
+/* Removed frame hover effect for diplomas */
+.map article:hover {
+    transform: none !important;
+}
 article:hover {
+    /* Only keep transform for articles, not for diploma frames */
     transform: translateY(-6px);
-    /* box-shadow already handled by shadow-xl-vintage */
-    border-color: var(--color-yellow);
 }
 
 /* Custom styling for strong tags inside description list items */
@@ -381,3 +384,203 @@ li strong {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #666;
 }
+
+.diploma-frame{
+    /* container size */
+    max-width: 680px;
+    width: min(92vw, 680px);
+    aspect-ratio: 16 / 10;
+
+    /* thickness variables (thin on small widths) */
+    --bw-frame: clamp(2px, 0.7vw, 5px);
+    --bw-flat: clamp(6px, 1.7vw, 12px);
+    --bw-inner: clamp(2px, 0.7vw, 5px);
+    --gap-gold: clamp(5px, 0.9vw, 10px); /* inset for the thin gold line */
+
+    /* base content scale (smaller viewports => smaller type/images) */
+    --d-font: clamp(10px, 1.05vw, 16px);
+
+    /* colors */
+    --c-outer-a: rgb(109, 84, 58);
+    --c-outer-b: rgb(24, 19, 13);
+    --c-flat: rgb(65, 40, 16);
+    --c-inner-a: rgb(24, 19, 13);
+    --c-inner-b: rgb(109, 84, 58);
+    --c-gold: rgba(168,141,94,0.55);
+
+    box-shadow: 4px 6px 12px 0 black;
+    border-style: solid;
+    border-width: var(--bw-frame);
+    border-color: var(--c-outer-a) var(--c-outer-b) var(--c-outer-b) var(--c-outer-a);
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+    background:#1a140e;
+}
+
+.flatSurface{
+    border: var(--bw-flat) solid var(--c-flat);
+    width: 100%; height: 100%;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+}
+
+/* inner thin gold line */
+.diploma-frame .gold-line{
+    position:absolute;
+    inset: var(--gap-gold);
+    border: 1.5px solid var(--c-gold);
+    pointer-events:none;
+}
+
+.innerBevel{
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+    border-style: solid;
+    border-width: var(--bw-inner);
+    border-color: var(--c-inner-a) var(--c-inner-b) var(--c-inner-b) var(--c-inner-a);
+}
+
+/* Paper */
+.paper-texture.diploma-paper{
+    display:block; width:100%; height:100%;
+    background-color: rgb(255,249,224);
+    border: 3px solid;
+    border-color: rgb(207,166,0) rgb(207,166,0) rgb(145,110,0) rgb(145,110,0);
+    position:relative; overflow:hidden;
+    /* CONTENT SCALE HERE */
+    font-size: var(--d-font);
+    /* padding scales with size */
+    padding: 8% 10% 12% 10%;
+}
+
+/* ----- diploma content that scales with font-size (em) ----- */
+.diploma-content{ height:100%; width:100%; }
+.d-crest{
+    display:block;
+    margin: 0 auto 0.6em auto;
+    width: clamp(44px, 7.5vw, 85px);
+    height: auto;
+    object-fit: contain;
+    opacity:.95;
+}
+.d-header .divider{ margin: .25em auto 0; height:1px; width: 12em; background: #a88d5e33; }
+
+/* Typography in em so it follows --d-font */
+.diploma-word{
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    letter-spacing: .25em;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    font-size: clamp(.65em, 1.25vw, .9em);
+    margin-bottom: .25em;
+}
+
+.uni{
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color: #7f693f;
+    font-size: clamp(1.4em, 3.1vw, 2.3em);
+    line-height: 1.1;
+}
+
+.dept{
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    color:#2f2f2f;
+    font-size: clamp(1em, 1.9vw, 1.25em);
+}
+
+.meta{
+    color:#565656;
+    font-size: clamp(.85em, 1.6vw, 1.05em);
+}
+.gpa{ margin-top: .9em; }
+
+/* footer */
+.d-footer{ margin-top: 1.7em; }
+.footer-slot{
+    position:relative;
+    width: 10em;
+    height: .6rem;
+    margin: 0 auto;
+}
+.footer-slot .rule{
+    position:absolute; left:50%; bottom:.5rem;
+    transform: translateX(-50%);
+    height:1px; width:100%; background: rgba(168,141,94,.4);
+}
+.footer-slot .label{
+    position:absolute; left:50%; bottom:-0.5rem; transform:translateX(-50%);
+    color:#6b5a37; letter-spacing:.12em; text-transform:uppercase;
+    font-size: clamp(.6em, 1.2vw, .75em);
+}
+.diploma-signature{
+    position:absolute; left:50%; bottom:.5rem; transform:translateX(-50%) rotate(-2deg);
+    width: min(9em, 95%); max-height: 3em; opacity:.9; filter: contrast(.9) saturate(.9);
+    pointer-events:none; user-select:none;
+}
+.diploma-date{
+    position:absolute; left:50%; bottom:.55rem; transform:translateX(-50%);
+    color:#5f4c2a; letter-spacing:.04em; white-space:nowrap;
+    font-size: clamp(.7em, 1.3vw, .85em);
+}
+
+/* watermark and stamp scale with container */
+.diploma-watermark{
+    position:absolute; left:25%; top:25%;
+    transform: translate(-65%,-55%);
+    width: clamp(40%, 60%, 60%); opacity:.06;
+    filter: grayscale(100%) contrast(.9);
+    pointer-events:none; user-select:none;
+}
+
+.diploma-stamp{
+    position:absolute; right:5%; bottom:7%;
+    width: clamp(40px, 10%, 70px);
+    opacity:.75; transform: rotate(-6deg);
+    mix-blend-mode: multiply; filter: contrast(1.05) saturate(.9);
+    pointer-events:none; user-select:none;
+}
+
+/* keep square corners for all frame layers */
+.outerBevel, .flatSurface, .innerBevel{ border-radius:0 !important; }
+
+/* Paper texture (preserved) */
+.paper-texture{
+    background-color:#fffbe9;
+    background-image:
+            linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.7)),
+            url('/images/parchement_texture.jpg'),
+            linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)),
+            url('/images/noise.png'),
+            repeating-linear-gradient(135deg, rgba(255,255,255,.07) 0px, rgba(255,255,255,.07) 2px, transparent 2px, transparent 8px),
+            repeating-linear-gradient(45deg, rgba(230,220,180,.06) 0px, rgba(230,220,180,.06) 4px, transparent 4px, transparent 12px);
+    background-blend-mode: normal, multiply, normal, multiply, lighten, normal;
+    background-size: cover, cover, cover, 300px 300px, 100px 100px, 120px 120px;
+    border-radius:0 !important;
+    box-shadow: inset 0 2px 12px rgba(0,0,0,.07);
+    position:relative; z-index:1;
+}
+
+/* Shine effect (unchanged) */
+.shine{ position:relative; overflow:hidden; }
+.shine::before{
+    content:""; position:absolute; top:0; left:-75%;
+    width:70%; height:100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.85) 40%, rgba(255,255,255,.85) 60%, rgba(255,255,255,0) 50%);
+    box-shadow: 0 0 24px 8px rgba(255,255,255,.25), 0 0 48px 16px rgba(255,255,255,.15);
+    border-left:2px solid rgba(255,255,255,.5);
+    border-right:2px solid rgba(255,255,255,.2);
+    z-index:2; transform: skewX(-25deg);
+    pointer-events:none; opacity:0; transition:left .85s, opacity .3s; will-change:left, opacity;
+}
+.shine:hover::before, .shine:focus::before{ left:125%; opacity:0.8; }
+
+/* Mobile stacking already handled by flex, but keep spacing tidy */
+@media (max-width: 420px){
+    .diploma-frame{ width: 94vw; }
+}
+
+
+
