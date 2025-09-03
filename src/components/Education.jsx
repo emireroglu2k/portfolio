@@ -45,18 +45,12 @@ const Education = () => {
 
         const onLeave = (i) => {
             const frame = framesRef.current[i];
-            const paper = papersRef.current[i];
             gsap.to(frame, {
                 rotateX: 0,
                 rotateY: 0,
                 z: 0,
                 duration: 0.3,
                 ease: 'power3.out',
-            });
-            gsap.to(paper, {
-                boxShadow: 'inset 0 2px 12px rgba(0,0,0,.07)',
-                duration: 0.25,
-                ease: 'power2.out',
             });
         };
 
@@ -116,8 +110,12 @@ const Education = () => {
         <section
             id="education"
             ref={sectionRef}
-            className="relative z-10 w-full min-h-[60vh] py-20 px-5 education-section"
-            style={{ scrollMarginTop: 'calc(var(--nav-h, 72px) + 16px)' }}
+            className="relative z-10 w-full min-h-[60vh] px-2 sm:px-5 education-section"
+            style={{
+                scrollMarginTop: 'calc(var(--nav-h, 72px) + 16px)',
+                paddingTop: '2.5rem', // 10px on mobile, 40px on sm+
+                paddingBottom: '2.5rem',
+            }}
         >
             {/* BG scrolling text */}
             <div className="scrolling-text-bg-r absolute top-0 bleed-100vw">
@@ -133,12 +131,12 @@ const Education = () => {
                 </div>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-modern-negra text-yellow text-center mb-24 relative z-10 outline-title">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-modern-negra text-yellow text-center mb-16 sm:mb-24 relative z-10 outline-title">
                 Education
             </h2>
 
             {/* Diplomas */}
-            <div className="flex flex-col lg:flex-row gap-10 items-center justify-center my-10 mb-32">
+            <div className="flex flex-col lg:flex-row gap-6 items-center justify-center mx-auto my-4 mb-16 w-full max-w-full sm:gap-10 sm:my-10 sm:mb-32">
                 {educationDiplomas.map((d, i) => (
                     <div
                         key={`${d.university}-${i}`}

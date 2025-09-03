@@ -6,6 +6,7 @@ import Hero from "./components/Hero.jsx";
 import Experience from "./components/Experience/Experience.jsx";
 import Education from "./components/Education.jsx";
 import Projects from "./components/Projects/Projects.jsx";
+import Skills from "./components/Skills.jsx";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -17,6 +18,7 @@ const App = () => {
             <Experience />
             <Education />
             <Projects />
+            <Skills />
         </main>
     );
 };

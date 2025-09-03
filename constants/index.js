@@ -29,23 +29,19 @@ export const experienceFiles = [
 // Use widely available CDN logos (devicon/jsdelivr/simpleicons/vectorlogo)
 export const experiences = [
     {
-        title: "Intern",
-        company: "Alrod Dynamics",
-        companyLogo: "images/logos/alrod_logo.png",
-        duration: "August 2025 – September 2025",
+        title: "Long Term Intern",
+        company: "ASELSAN",
+        companyLogo: "images/logos/aselsan_logo_small.png",
+        duration: "February 2025 – June 2025",
         location: "Ankara, Turkey",
-        type: "Computer Vision, Object Detection and Classification",
+        type: "Artificial Intelligence and Natural Language Processing",
         description: [
-            "Developed deep learning-based **Object Detection** models to identify anomalies in solar panels from drone-captured thermal images.",
-            "Conducted model training, data augmentation, and performance analysis using the **RF-DETR (Detection Transformer)** architecture on the **Roboflow** platform with **Python**."
-        ],
-        technologies: [
-            { name: "Python",    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-            { name: "Roboflow",  logo: "https://logosandtypes.com/wp-content/uploads/2025/02/roboflow.svg" },
-        ],
+            "Conducted research on **AI applications** in **requirements analysis**.",
+            "Worked on the integration of **Retrieval-Augmented Generation (RAG)** models."
+        ]
     },
-    {
-        title: "Intern",
+        {
+        title: "Summer Intern",
         company: "ASELSAN",
         companyLogo: "images/logos/aselsan_logo_small.png",
         duration: "July 2025 – August 2025",
@@ -63,17 +59,22 @@ export const experiences = [
         ],
     },
     {
-        title: "Candidate Engineer",
-        company: "ASELSAN",
-        companyLogo: "images/logos/aselsan_logo_small.png",
-        duration: "February 2025 – June 2025",
+        title: "Summer Intern",
+        company: "Alrod Dynamics",
+        companyLogo: "images/logos/alrod_logo.png",
+        duration: "August 2025 – September 2025",
         location: "Ankara, Turkey",
-        type: "Artificial Intelligence and Natural Language Processing",
+        type: "Computer Vision, Object Detection and Classification",
         description: [
-            "Conducted research on **AI applications** in **requirements analysis**.",
-            "Worked on the integration of **Retrieval-Augmented Generation (RAG)** models."
-        ]
+            "Developed deep learning-based **Object Detection** models to identify anomalies in solar panels from drone-captured thermal images.",
+            "Conducted model training, data augmentation, and performance analysis using the **RF-DETR (Detection Transformer)** architecture on the **Roboflow** platform with **Python**."
+        ],
+        technologies: [
+            { name: "Python",    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+            { name: "Roboflow",  logo: "https://logosandtypes.com/wp-content/uploads/2025/02/roboflow.svg" },
+        ],
     },
+
 ];
 
 export const educationDiplomas = [

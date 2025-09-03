@@ -582,5 +582,9 @@ li strong {
     .diploma-frame{ width: 94vw; }
 }
 
+.experience-track {
+    transform: translate3d(0,0,0); /* promote to its own layer */
+}
+
 
 
