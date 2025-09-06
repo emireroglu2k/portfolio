@@ -110,7 +110,7 @@ const Education = () => {
         <section
             id="education"
             ref={sectionRef}
-            className="relative z-10 w-full min-h-[60vh] px-2 sm:px-5 education-section"
+            className="relative z-10 w-full min-h-[60dvh] px-2 sm:px-5 education-section"
             style={{
                 scrollMarginTop: 'calc(var(--nav-h, 72px) + 16px)',
                 paddingTop: '2.5rem', // 10px on mobile, 40px on sm+
@@ -118,13 +118,13 @@ const Education = () => {
             }}
         >
             {/* BG scrolling text */}
-            <div className="scrolling-text-bg-r absolute top-0 bleed-100vw">
+            <div className="scrolling-text-bg-r absolute top-0 bleed-100dvw">
                 <div className="scroll-content">
                     <span>{scrollingTextContent}</span>
                     <span>{scrollingTextContent}</span>
                 </div>
             </div>
-            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100vw">
+            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100dvw">
                 <div className="scroll-content">
                     <span>{scrollingTextContent}</span>
                     <span>{scrollingTextContent}</span>

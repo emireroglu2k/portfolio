@@ -399,7 +399,7 @@ li strong {
 .diploma-frame{
     /* container size */
     max-width: 680px;
-    width: min(92dvw, 680px);
+    width: min(100dvw, 680px);
     aspect-ratio: 16 / 10;
 
     /* thickness variables (thin on small widths) */

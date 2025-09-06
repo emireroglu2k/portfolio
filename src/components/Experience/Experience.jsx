@@ -91,10 +91,10 @@ const Experience = () => {
             ref={sectionRef}
             className="relative z-10 w-full experience-section"
         >
-            {/* ONLY CHANGE: wrap the animated content in a 100vh container */}
+            {/* ONLY CHANGE: wrap the animated content in a 100dvh container */}
             <div
                 className="pin-inner h-screen flex flex-col"
-                style={{ height: '100dvh' }} // mobile-safe dynamic viewport height
+                style={{ minHeight: '100dvh' }} // mobile-safe dynamic viewport height
             >
                 {/* Title */}
                 <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-modern-negra text-yellow text-center pt-16 sm:pt-20 mb-14 sm:mb-24 mt-12 sm:mt-8 relative z-10 outline-title">
@@ -103,26 +103,26 @@ const Experience = () => {
 
                 {/* CARD TRACK */}
                 <div className="relative overflow-hidden">
-                    <div
-                        ref={trackRef}
-                        className="experience-track flex items-stretch gap-24 sm:gap-28 md:gap-32 lg:gap-40 will-change-transform"
-                        aria-label="Experience carousel"
-                    >
-                        {/* Spacer to center the first card */}
-                        <div ref={spacerRef} className="shrink-0" aria-hidden />
+                        <div
+                            ref={trackRef}
+                            className="experience-track flex items-stretch gap-24 sm:gap-28 md:gap-32 lg:gap-40 will-change-transform"
+                            aria-label="Experience carousel"
+                        >
+                            {/* Spacer to center the first card */}
+                            <div ref={spacerRef} className="shrink-0" aria-hidden />
 
-                        {experiences.map((exp, idx) => (
-                            <div
-                                key={idx}
-                                ref={idx === 0 ? firstCardRef : null}
-                                className="shrink-0 w-[70vw] sm:w-[60vw] lg:w-[45vw] xl:w-[38vw]"
-                            >
-                                <ExperienceCard data={exp} />
-                            </div>
-                        ))}
+                            {experiences.map((exp, idx) => (
+                                <div
+                                    key={idx}
+                                    ref={idx === 0 ? firstCardRef : null}
+                                    className="shrink-0 w-[70dvw] sm:w-[60dvw] lg:w-[45dvw] xl:w-[38dvw]"
+                                >
+                                    <ExperienceCard data={exp} />
+                                </div>
+                            ))}
 
-                        <div className="shrink-0 w-[25vw]" aria-hidden />
-                    </div>
+                            <div className="shrink-0 w-[25dvw]" aria-hidden />
+                        </div>
                 </div>
 
                 {/* TIMELINE */}
@@ -147,7 +147,7 @@ const Experience = () => {
                         {experiences.map((exp, i) => (
                             <div
                                 key={`tick-${i}`}
-                                className="shrink-0 w-[70vw] sm:w-[60vw] lg:w-[45vw] xl:w-[38vw] flex flex-col items-center text-center"
+                                className="shrink-0 w-[70dvw] sm:w-[60dvw] lg:w-[45dvw] xl:w-[38dvw] flex flex-col items-center text-center"
                             >
                                 <span className="block h-2 w-2 rounded-full bg-white/70" />
                                 <span className="mt-2 text-[11px] sm:text-xs md:text-sm text-white/80 whitespace-nowrap">
@@ -155,19 +155,19 @@ const Experience = () => {
                 </span>
                             </div>
                         ))}
-                        <div className="shrink-0 w-[10vw]" />
+                        <div className="shrink-0 w-[10dvw]" />
                     </div>
                 </div>
             </div>
 
             {/* Background scrolling text (unchanged & outside flow) */}
-            <div className="scrolling-text-bg-r absolute top-4 sm:top-8 bleed-100vw pointer-events-none">
+            <div className="scrolling-text-bg-r absolute top-4 sm:top-8 bleed-100dvw pointer-events-none">
                 <div className="scroll-content">
                     <span>{scrollingTextContent}</span>
                     <span>{scrollingTextContent}</span>
                 </div>
             </div>
-            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100vw pointer-events-none">
+            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100dvw pointer-events-none">
                 <div className="scroll-content">
                     <span>{scrollingTextContent}</span>
                     <span>{scrollingTextContent}</span>
