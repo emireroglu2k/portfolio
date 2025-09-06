@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
 @import "tailwindcss";
 
+:root {
+    /* Stable viewport height; JS will set this once on load if svh isn't supported */
+    --app-height: 100svh;
+
+    /* Adjust to your actual fixed bar sizes */
+    --header-height: 72px;
+    --footer-height: 0px; /* set to your fixed footer/tab bar height if you have one */
+}
+
 @font-face {
     font-family: "Modern Negra";
     src: url("/fonts/Bohemian Soul.otf") format("truetype");
@@ -130,6 +139,18 @@ body {
     .shadow-inner-vintage {
         box-shadow: inset 0px 0px 8px rgba(0,0,0,0.5), inset 0px 0px 2px rgba(var(--color-gold-border) / 0.3);
     }
+
+            /* ---- Viewport stability helpers ---- */
+            .full-viewport     { min-height: var(--app-height); }
+            .full-viewport-h   { height:     var(--app-height); }
+            .with-fixed-bars   {
+                padding-top:    calc(var(--header-height) + env(safe-area-inset-top));
+                padding-bottom: calc(var(--footer-height) + env(safe-area-inset-bottom));
+                min-height:     var(--app-height);
+                box-sizing:     border-box;
+            }
+            .safe-top    { padding-top:    env(safe-area-inset-top); }
+            .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
 }
 
 @layer components {
@@ -140,6 +161,8 @@ body {
         backdrop-filter: blur(10px);
         background-color: transparent;
         transition: background-color 0.5s ease-out;
+        height: var(--header-height);
+        padding-top: env(safe-area-inset-top);
 
         div { @apply flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto; }
         p { @apply font-modern-negra text-3xl -mb-2; }
@@ -256,7 +279,10 @@ li strong {
 
 /* --- Hero Section Styles (Provided by you, kept for completeness) --- */
 #hero {
-    @apply relative z-10 min-h-dvh w-full border border-transparent flex flex-col pt-20 pb-10;
+
+    /* REPLACED min-h-dvh with explicit min-height */
+    @apply relative z-10 w-full border border-transparent flex flex-col pt-20 pb-10;
+    min-height: var(--app-height);
 
     .title-wrapper {
         @apply relative;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { navLinks } from '../../constants/index.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
     const navRef = useRef(null);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     // Smooth scroll handler with offset for navbar height
     // Robust scroll handler: retries scroll after layout shifts
@@ -82,12 +83,29 @@ const Navbar = () => {
             className="fixed z-50 w-full backdrop-blur-sm transition-colors duration-500 ease-out"
             style={{ height: 'var(--nav-h)' }}
         >
-            <div className="flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto">
-                <a href="#hero" onClick={(e) => onNavClick(e, 'hero')} className="flex items-center gap-2">
+            <div className="flex md:flex-row flex-col md:justify-between items-center gap-5 py-5 lg:px-0 px-5 container mx-auto relative">
+                {/* Title left-aligned on mobile */}
+                <a
+                    href="#hero"
+                    onClick={(e) => { onNavClick(e, 'hero'); setMenuOpen(false); }}
+                    className="flex items-center gap-2 w-full md:w-auto justify-start"
+                >
                     <p className="font-modern-negra text-3xl -mb-2">Emir Eroglu</p>
                 </a>
 
-                <ul className="flex-center lg:gap-12 gap-5 md:gap-7">
+                {/* Hamburger icon for small screens */}
+                <button
+                    className="md:hidden absolute right-5 top-1/2 -translate-y-1/2 p-2 z-50"
+                    aria-label="Open menu"
+                    onClick={() => setMenuOpen((open) => !open)}
+                >
+                    <span className="block w-7 h-1 bg-white mb-1 rounded transition-all" style={{ transform: menuOpen ? 'rotate(45deg) translateY(8px)' : 'none' }}></span>
+                    <span className={`block w-7 h-1 bg-white mb-1 rounded transition-all ${menuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className="block w-7 h-1 bg-white rounded transition-all" style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-8px)' : 'none' }}></span>
+                </button>
+
+                {/* Desktop nav links */}
+                <ul className="flex-center lg:gap-12 gap-5 md:gap-7 md:flex hidden">
                     {navLinks.map(link => (
                         <li key={link.id}>
                             <a
@@ -95,6 +113,25 @@ const Navbar = () => {
                                 onClick={(e) => onNavClick(e, link.id)}
                                 className="cursor-pointer text-nowrap md:text-base text-sm nav-link"
                                 aria-current={undefined /* set by JS via .active */}
+                            >
+                                {link.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+
+                {/* Mobile nav links (dropdown) */}
+                <ul
+                    className={`md:hidden flex flex-col gap-4 bg-black/95 px-8 py-8 rounded-xl absolute right-5 top-[110%] shadow-xl transition-all duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                    style={{ minWidth: '180px' }}
+                >
+                    {navLinks.map(link => (
+                        <li key={link.id}>
+                            <a
+                                href={`#${link.id}`}
+                                onClick={(e) => { onNavClick(e, link.id); setMenuOpen(false); }}
+                                className="cursor-pointer text-nowrap text-base nav-link"
+                                aria-current={undefined}
                             >
                                 {link.title}
                             </a>
