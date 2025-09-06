@@ -171,7 +171,7 @@ export const skills = [
             { name: "Java",      logo: DEVICON("java") },
             { name: "C++",       logo: DEVICON("cplusplus") },
             { name: "Python",    logo: DEVICON("python") },
-            { name: "Assembly",  logo: "public/images/icons/assembly.png" },
+            { name: "Assembly",  logo: "images/icons/assembly.png" },
         ],
     },
     {
@@ -188,18 +188,18 @@ export const skills = [
     {
         title: "Hardware",
         color: "#3B82F6",
-        items: [{ name: "SystemVerilog", logo: "public/images/icons/systemverilog.svg" }],
+        items: [{ name: "SystemVerilog", logo: "images/icons/systemverilog.svg" }],
     },
     {
         title: "Tools",
         color: "#8B5CF6",
         items: [
             { name: "Git",            logo: DEVICON("git") },
-            { name: "GitHub",         logo: "public/images/icons/github.png" },
+            { name: "GitHub",         logo: "images/icons/github.png" },
             { name: "VS Code",        logo: DEVICON("vscode") },
             { name: "IntelliJ",       logo: DEVICON("intellij") },
-            { name: "Vivado",         logo: "public/images/icons/vivado.png" },
-            { name: "UML",            logo: "public/images/icons/UML.png" },
+            { name: "Vivado",         logo: "images/icons/vivado.png" },
+            { name: "UML",            logo: "images/icons/UML.png" },
         ],
     },
 ];

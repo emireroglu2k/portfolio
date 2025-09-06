@@ -221,7 +221,7 @@ const Hero = () => {
         <div className="actions z-4">
           <div className="fade-in-up stagger-3 flex flex-wrap items-center justify-center gap-6">
             <a
-              href="/public/assets/Emir_Eroglu_CV_en.pdf"
+              href="/assets/Emir_Eroglu_CV_en.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-resume group custom-tooltip-trigger"
