@@ -39,8 +39,8 @@ const renderDescription = (text = "", technologies = []) => {
 };
 
 const Field = ({ icon: Icon, children }) => (
-  <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm [@media(max-height:760px)]:text-[1.6vh] sm:[@media(max-height:760px)]:text-[1.7vh] text-white/70">
-    <Icon className="h-4 w-4 text-indigo-400 [@media(max-height:760px)]:h-[1.8vh] [@media(max-height:760px)]:w-[1.8vh]" />
+  <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm [@media(max-height:760px)]:text-[1.6dvh] sm:[@media(max-height:760px)]:text-[1.7dvh] text-white/70">
+  <Icon className="h-4 w-4 text-indigo-400 [@media(max-height:760px)]:h-[1.8dvh] [@media(max-height:760px)]:w-[1.8dvh]" />
     {children}
   </span>
 );
@@ -84,10 +84,10 @@ const ExperienceCard = ({ data }) => {
         ) : null}
 
         <div className="min-w-0 flex-grow">
-          <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl [@media(max-height:760px)]:text-[2.2vh] font-semibold leading-tight text-white/95">
+          <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl [@media(max-height:760px)]:text-[2.2dvh] font-semibold leading-tight text-white/95">
             {company}
             {title ? (
-              <span className="text-white/60 font-normal text-sm xs:text-base sm:text-lg [@media(max-height:760px)]:text-[1.8vh]">
+              <span className="text-white/60 font-normal text-sm xs:text-base sm:text-lg [@media(max-height:760px)]:text-[1.8dvh]">
                 &nbsp;|&nbsp; {title}
               </span>
             ) : null}
@@ -97,7 +97,7 @@ const ExperienceCard = ({ data }) => {
             {duration ? <Field icon={Calendar}>{duration}</Field> : null}
             {location ? <Field icon={MapPin}>{location}</Field> : null}
             {type ? (
-              <span className="text-[10px] xs:text-[11px] sm:text-xs [@media(max-height:760px)]:text-[1.5vh] font-semibold text-indigo-200/90 bg-indigo-500/10 border border-indigo-400/20 rounded px-2 py-1 [@media(max-height:760px)]:px-1.5 [@media(max-height:760px)]:py-0.5">
+              <span className="text-[10px] xs:text-[11px] sm:text-xs [@media(max-height:760px)]:text-[1.5dvh] font-semibold text-indigo-200/90 bg-indigo-500/10 border border-indigo-400/20 rounded px-2 py-1 [@media(max-height:760px)]:px-1.5 [@media(max-height:760px)]:py-0.5">
                 {type}
               </span>
             ) : null}
@@ -108,7 +108,7 @@ const ExperienceCard = ({ data }) => {
       {/* highlights */}
       {description.length > 0 && (
         <section className="mt-4">
-          <h4 className="mb-2 text-xs xs:text-sm [@media(max-height:760px)]:text-[1.7vh] font-semibold text-white/70">
+          <h4 className="mb-2 text-xs xs:text-sm [@media(max-height:760px)]:text-[1.7dvh] font-semibold text-white/70">
             Highlights
           </h4>
           <ul className="space-y-2 list-disc pl-4">

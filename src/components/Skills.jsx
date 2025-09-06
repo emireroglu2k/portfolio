@@ -46,7 +46,7 @@ const Skills = () => {
     return (
         <section
             id="skills"
-            className="relative z-10 w-full min-h-[60vh] px-2 sm:px-5 skills-section"
+            className="relative z-10 w-full min-h-[60dvh] px-2 sm:px-5 skills-section"
             style={{
                 scrollMarginTop: "calc(var(--nav-h, 72px) + 16px)",
                 paddingTop: "2rem",
@@ -54,13 +54,13 @@ const Skills = () => {
             }}
         >
             {/* BG scrolling text */}
-            <div className="scrolling-text-bg-r absolute top-0 bleed-100vw pointer-events-none select-none">
+            <div className="scrolling-text-bg-r absolute top-0 bleed-100dvw pointer-events-none select-none">
                 <div className="scroll-content">
                     <span>{scrollingTextContent}</span>
                     <span>{scrollingTextContent}</span>
                 </div>
             </div>
-            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100vw pointer-events-none select-none">
+            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100dvw pointer-events-none select-none">
                 <div className="scroll-content">
                     <span>{scrollingTextContent}</span>
                     <span>{scrollingTextContent}</span>

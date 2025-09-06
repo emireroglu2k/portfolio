@@ -51,7 +51,7 @@ export default function TiltedCard({
     const responsiveWidth = useMemo(() => {
         // If user provided explicit width, just return it as-is
         if (imageWidth) return imageWidth;
-        return `clamp(${minWidth}px, ${vwWidth}vw, ${maxWidth}px)`;
+    return `clamp(${minWidth}px, ${vwWidth}dvw, ${maxWidth}px)`;
     }, [imageWidth, minWidth, vwWidth, maxWidth]);
 
     const hasFixedHeight = Boolean(imageHeight);

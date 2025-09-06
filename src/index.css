@@ -98,8 +98,8 @@ body {
     .bleed-100vw {
         left: 50%;
         transform: translateX(-50%); /* center on the viewport */
-        width: 100vw;
-        max-width: 100vw;
+    width: 100dvw;
+    max-width: 100dvw;
         overflow: clip;   /* prevents the extra scrollbar */
         contain: paint;
         pointer-events: none;
@@ -158,8 +158,8 @@ body {
         user-select: none;
         line-height: 1;
         will-change: transform;
-        width: 100vw;
-        max-width: 100vw;
+    width: 100dvw;
+    max-width: 100dvw;
         overflow: clip;
         contain: paint;
     }
@@ -266,7 +266,7 @@ li strong {
     }
 
     h1.title {
-        @apply mt-10 md:mt-20 text-8xl md:text-[14vw] leading-none text-center font-modern-negra;
+    @apply mt-10 md:mt-20 text-8xl md:text-[14dvw] leading-none text-center font-modern-negra;
         color: white;
         backface-visibility: hidden;
         transform: translateZ(0);
@@ -399,17 +399,17 @@ li strong {
 .diploma-frame{
     /* container size */
     max-width: 680px;
-    width: min(92vw, 680px);
+    width: min(92dvw, 680px);
     aspect-ratio: 16 / 10;
 
     /* thickness variables (thin on small widths) */
-    --bw-frame: clamp(2px, 0.7vw, 5px);
-    --bw-flat: clamp(6px, 1.7vw, 12px);
-    --bw-inner: clamp(2px, 0.7vw, 5px);
-    --gap-gold: clamp(5px, 0.9vw, 10px); /* inset for the thin gold line */
+    --bw-frame: clamp(2px, 0.7dvw, 5px);
+    --bw-flat: clamp(6px, 1.7dvw, 12px);
+    --bw-inner: clamp(2px, 0.7dvw, 5px);
+    --gap-gold: clamp(5px, 0.9dvw, 10px); /* inset for the thin gold line */
 
     /* base content scale (smaller viewports => smaller type/images) */
-    --d-font: clamp(10px, 1.05vw, 16px);
+    --d-font: clamp(10px, 1.05dvw, 16px);
 
     /* colors */
     --c-outer-a: rgb(109, 84, 58);
@@ -471,7 +471,7 @@ li strong {
 .d-crest{
     display:block;
     margin: 0 auto 0.6em auto;
-    width: clamp(44px, 7.5vw, 85px);
+    width: clamp(44px, 7.5dvw, 85px);
     height: auto;
     object-fit: contain;
     opacity:.95;
@@ -484,26 +484,26 @@ li strong {
     letter-spacing: .25em;
     color: #6b6b6b;
     text-transform: uppercase;
-    font-size: clamp(.65em, 1.25vw, .9em);
+    font-size: clamp(.65em, 1.25dvw, .9em);
     margin-bottom: .25em;
 }
 
 .uni{
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     color: #7f693f;
-    font-size: clamp(1.4em, 3.1vw, 2.3em);
+    font-size: clamp(1.4em, 3.1dvw, 2.3em);
     line-height: 1.1;
 }
 
 .dept{
     font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     color:#2f2f2f;
-    font-size: clamp(1em, 1.9vw, 1.25em);
+    font-size: clamp(1em, 1.9dvw, 1.25em);
 }
 
 .meta{
     color:#565656;
-    font-size: clamp(.85em, 1.6vw, 1.05em);
+    font-size: clamp(.85em, 1.6dvw, 1.05em);
 }
 .gpa{ margin-top: .9em; }
 
@@ -523,7 +523,7 @@ li strong {
 .footer-slot .label{
     position:absolute; left:50%; bottom:-0.5rem; transform:translateX(-50%);
     color:#6b5a37; letter-spacing:.12em; text-transform:uppercase;
-    font-size: clamp(.6em, 1.2vw, .75em);
+    font-size: clamp(.6em, 1.2dvw, .75em);
 }
 .diploma-signature{
     position:absolute; left:50%; bottom:.5rem; transform:translateX(-50%) rotate(-2deg);
@@ -533,7 +533,7 @@ li strong {
 .diploma-date{
     position:absolute; left:50%; bottom:.55rem; transform:translateX(-50%);
     color:#5f4c2a; letter-spacing:.04em; white-space:nowrap;
-    font-size: clamp(.7em, 1.3vw, .85em);
+    font-size: clamp(.7em, 1.3dvw, .85em);
 }
 
 /* watermark and stamp scale with container */
@@ -590,7 +590,7 @@ li strong {
 
 /* Mobile stacking already handled by flex, but keep spacing tidy */
 @media (max-width: 420px){
-    .diploma-frame{ width: 94vw; }
+    .diploma-frame{ width: 94dvw; }
 }
 
 .experience-track {

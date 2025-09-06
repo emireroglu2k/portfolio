@@ -150,7 +150,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="hero" className="noisy min-h-dvh flex flex-col pt-20 pb-10 relative" ref={sectionRef}>
+  <section id="hero" className="noisy min-h-dvh flex flex-col pt-20 pb-10 relative" ref={sectionRef}>
       {/* Video Background */}
       <video
         id="hero-video"

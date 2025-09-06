@@ -171,12 +171,12 @@ const Projects = () => {
     return (
         <section id="projects" ref={sectionRef} className="relative z-10 w-full py-20 px-5 projects-section">
             {/* Background Scrolling Text - Left */}
-            <div className="scrolling-text-bg-r absolute top-0 bleed-100vw">
+            <div className="scrolling-text-bg-r absolute top-0 bleed-100dvw">
                 <div className="scroll-content"><span>{scrollingTextContent}</span><span>{scrollingTextContent}</span></div>
             </div>
 
             {/* Background Scrolling Text - Right */}
-            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100vw">
+            <div className="scrolling-text-bg-l absolute bottom-0 bleed-100dvw">
                 <div className="scroll-content"><span>{scrollingTextContent}</span><span>{scrollingTextContent}</span></div>
             </div>
 
