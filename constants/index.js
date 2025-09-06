@@ -4,26 +4,6 @@ export const navLinks = [
     { id: "education", title: "Education" },
     { id: "projects", title: "Projects" },
     { id: "skills", title: "Skills" },
-    { id: "contact", title: "Contact" },
-];
-
-// Projects file metadata for Projects.jsx (labels, logos, file names)
-export const experienceFiles = [
-    {
-        name: 'alrod_dynamics.json',
-        label: 'Alrod Dynamics',
-        logo: '/images/logos/alrod_logo.png'
-    },
-    {
-        name: 'aselsan.json',
-        label: 'ASELSAN (Intern)',
-        logo: '/images/logos/aselsan_logo_small.png'
-    },
-    {
-        name: 'aselsan(1).json',
-        label: 'ASELSAN (Long Term Intern)',
-        logo: '/images/logos/aselsan_logo_small.png'
-    },
 ];
 
 // Use widely available CDN logos (devicon/jsdelivr/simpleicons/vectorlogo)
@@ -176,6 +156,50 @@ export const projects = [
             { name: "Firebase",       logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
             { name: "Android Studio", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" },
             { name: "GitHub",         logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
+        ],
+    },
+];
+
+const DEVICON = (slug) =>
+    `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${slug}/${slug}-original.svg`;
+
+export const skills = [
+    {
+        title: "Programming Languages",
+        color: "#F59E0B",
+        items: [
+            { name: "Java",      logo: DEVICON("java") },
+            { name: "C++",       logo: DEVICON("cplusplus") },
+            { name: "Python",    logo: DEVICON("python") },
+            { name: "Assembly",  logo: "public/images/icons/assembly.png" },
+        ],
+    },
+    {
+        title: "Web & Database",
+        color: "#10B981",
+        items: [
+            { name: "React",   logo: DEVICON("react") },
+            { name: "HTML",    logo: DEVICON("html5") },
+            { name: "CSS",     logo: DEVICON("css3") },
+            { name: "MongoDB", logo: DEVICON("mongodb") },
+            { name: "MySQL",   logo: DEVICON("mysql") },
+        ],
+    },
+    {
+        title: "Hardware",
+        color: "#3B82F6",
+        items: [{ name: "SystemVerilog", logo: "public/images/icons/systemverilog.svg" }],
+    },
+    {
+        title: "Tools",
+        color: "#8B5CF6",
+        items: [
+            { name: "Git",            logo: DEVICON("git") },
+            { name: "GitHub",         logo: "public/images/icons/github.png" },
+            { name: "VS Code",        logo: DEVICON("vscode") },
+            { name: "IntelliJ",       logo: DEVICON("intellij") },
+            { name: "Vivado",         logo: "public/images/icons/vivado.png" },
+            { name: "UML",            logo: "public/images/icons/UML.png" },
         ],
     },
 ];

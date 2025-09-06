@@ -1,8 +1,8 @@
-import React, { useMemo, useRef, useLayoutEffect } from 'react';
-import { experiences } from '../../../constants/index.js';
+import React, {useLayoutEffect, useMemo, useRef} from 'react';
+import {experiences} from '../../../constants/index.js';
 import ExperienceCard from './ExperienceCard.jsx';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,21 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const startLabelFromDuration = (duration = '') => {
     if (!duration) return '';
     const normalized = String(duration).replace(/[–—]/g, '-');
-    const left = normalized.split('-')[0]?.trim() || '';
-    const monthNames = [
-        'january','february','march','april','may','june',
-        'july','august','september','october','november','december'
-    ];
-    const m = left.match(/^([A-Za-z]+)\s+(\d{4})$/);
-    if (m) {
-        const idx = monthNames.indexOf(m[1].toLowerCase());
-        const year = m[2];
-        if (idx >= 0) {
-            const d = new Date(Number(year), idx, 1);
-            return new Intl.DateTimeFormat(undefined, { month: 'short', year: 'numeric' }).format(d);
-        }
-    }
-    return left;
+    return normalized.split('-')[0]?.trim() || '';
 };
 
 const Experience = () => {
@@ -135,7 +121,7 @@ const Experience = () => {
                             </div>
                         ))}
 
-                        <div className="shrink-0 w-[10vw]" aria-hidden />
+                        <div className="shrink-0 w-[25vw]" aria-hidden />
                     </div>
                 </div>
 

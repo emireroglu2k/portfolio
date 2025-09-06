@@ -7,18 +7,30 @@ import Experience from "./components/Experience/Experience.jsx";
 import Education from "./components/Education.jsx";
 import Projects from "./components/Projects/Projects.jsx";
 import Skills from "./components/Skills.jsx";
+import Footer from "./components/Footer.jsx";
+import ClickSpark from "./components/ClickSpark.jsx";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const App = () => {
     return (
         <main>
-            <Navbar />
-            <Hero />
-            <Experience />
-            <Education />
-            <Projects />
-            <Skills />
+            <ClickSpark
+                sparkColor='#fff'
+                sparkSize={10}
+                sparkRadius={15}
+                sparkCount={8}
+                duration={400}
+            >
+                <Navbar />
+                <Hero />
+                <Experience />
+                <Education />
+                <Projects />
+                <Skills />
+                <Footer />
+            </ClickSpark>
+
         </main>
     );
 };
