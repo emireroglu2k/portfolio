@@ -156,7 +156,6 @@ const Hero = () => {
         id="hero-video"
         className="absolute inset-0 w-full h-full object-cover -z-10 opacity-50"
         src="/videos/gradientBG.mp4"
-        poster="/videos/gradientBG_poster.jpg"  /* optional: prevents black flash */
         autoPlay
         loop
         muted
