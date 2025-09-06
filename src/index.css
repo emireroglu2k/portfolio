@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=auto");
 @import "tailwindcss";
 
 :root {
@@ -107,8 +107,8 @@ body {
     .bleed-100vw {
         left: 50%;
         transform: translateX(-50%); /* center on the viewport */
-    width: 100dvw;
-    max-width: 100dvw;
+        width: 100svw;      /* was 100dvw */
+        max-width: 100svw;  /* was 100dvw */
         overflow: clip;   /* prevents the extra scrollbar */
         contain: paint;
         pointer-events: none;
@@ -181,8 +181,8 @@ body {
         user-select: none;
         line-height: 1;
         will-change: transform;
-    width: 100dvw;
-    max-width: 100dvw;
+        width: 100svw;      /* was 100dvw */
+        max-width: 100svw;  /* was 100dvw */
         overflow: clip;
         contain: paint;
     }
