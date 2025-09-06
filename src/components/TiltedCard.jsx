@@ -90,39 +90,10 @@ export default function TiltedCard({
         rotateFigcaption.set(0);
     }
 
-
-    // Native touch event handlers for robust scroll prevention
-
-
-    // Only show tilt effect on non-mobile devices
-    const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-    if (isMobile) {
-        return (
-            <figure
-                className="relative w-full flex flex-col items-center touch-none"
-                style={{ width: containerWidth, height: containerHeight }}
-            >
-                <img
-                    src={imageSrc}
-                    alt={altText}
-                    className="object-cover rounded-[15px]"
-                    style={{ width: '100%', height: '100%', borderRadius: '15px' }}
-                />
-                {captionText && (
-                    <div
-                        className="absolute left-1/2 bottom-[-10px] pointer-events-none px-2 py-1 text-[12px] sm:text-[13px] font-medium text-white rounded-md bg-black/60 backdrop-blur shadow-md z-[3]"
-                        style={{ transform: 'translateX(-50%) translateZ(56px)' }}
-                    >
-                        {captionText}
-                    </div>
-                )}
-            </figure>
-        );
-    }
     return (
         <figure
             ref={ref}
-            className="relative w-full [perspective:1000px] flex flex-col items-center touch-none"
+            className="relative w-full [perspective:1000px] flex flex-col items-center"
             style={{ width: containerWidth, height: containerHeight }}
             onMouseMove={handleMouse}
             onMouseEnter={handleMouseEnter}

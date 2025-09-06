@@ -59,16 +59,8 @@ const Education = () => {
             const frame = framesRef.current[i];
             if (!frame) return;
             const rect = frame.getBoundingClientRect();
-            let clientX, clientY;
-            if (e.touches && e.touches.length === 1) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            } else {
-                clientX = e.clientX;
-                clientY = e.clientY;
-            }
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             const rx = gsap.utils.mapRange(0, rect.height, 6, -6, y);
             const ry = gsap.utils.mapRange(0, rect.width, -8, 8, x);
             gsap.to(frame, { rotateX: rx, rotateY: ry, duration: 0.18, ease: 'power2.out' });
@@ -81,24 +73,6 @@ const Education = () => {
 
         const onBlur = (i) => onLeave(i);
 
-        // Touch event handlers for mobile
-        const onTouchStart = (i, e) => {
-            if (e.touches && e.touches.length === 1) {
-                e.preventDefault();
-                onEnter(i);
-                onMove(i, e);
-            }
-        };
-        const onTouchMove = (i, e) => {
-            if (e.touches && e.touches.length === 1) {
-                e.preventDefault();
-                onMove(i, e);
-            }
-        };
-        const onTouchEnd = (i, e) => {
-            onLeave(i);
-        };
-
         // attach listeners and keep references for cleanup
         const handlers = framesRef.current.map((el, i) => {
             if (!el) return null;
@@ -107,35 +81,25 @@ const Education = () => {
             const move = (e) => onMove(i, e);
             const focus = () => onFocus(i);
             const blur = () => onBlur(i);
-            // Touch
-            const touchStart = (e) => onTouchStart(i, e);
-            const touchMove = (e) => onTouchMove(i, e);
-            const touchEnd = (e) => onTouchEnd(i, e);
 
             el.addEventListener('pointerenter', enter);
             el.addEventListener('pointerleave', leave);
             el.addEventListener('pointermove', move);
             el.addEventListener('focus', focus);
             el.addEventListener('blur', blur);
-            el.addEventListener('touchstart', touchStart, { passive: false });
-            el.addEventListener('touchmove', touchMove, { passive: false });
-            el.addEventListener('touchend', touchEnd);
 
-            return { el, enter, leave, move, focus, blur, touchStart, touchMove, touchEnd };
+            return { el, enter, leave, move, focus, blur };
         });
 
         return () => {
             handlers.forEach((h) => {
                 if (!h) return;
-                const { el, enter, leave, move, focus, blur, touchStart, touchMove, touchEnd } = h;
+                const { el, enter, leave, move, focus, blur } = h;
                 el.removeEventListener('pointerenter', enter);
                 el.removeEventListener('pointerleave', leave);
                 el.removeEventListener('pointermove', move);
                 el.removeEventListener('focus', focus);
                 el.removeEventListener('blur', blur);
-                el.removeEventListener('touchstart', touchStart);
-                el.removeEventListener('touchmove', touchMove);
-                el.removeEventListener('touchend', touchEnd);
             });
             gsap.killTweensOf(framesRef.current);
             gsap.killTweensOf(papersRef.current);
@@ -177,7 +141,7 @@ const Education = () => {
                     <div
                         key={`${d.university}-${i}`}
                         ref={(el) => setFrameRef(el, i)}
-                        className="diploma-frame outerBevel focus:outline-none touch-none"
+                        className="diploma-frame outerBevel focus:outline-none"
                         tabIndex={0}
                         aria-label={`${d.university} diploma`}
                     >

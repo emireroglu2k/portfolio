@@ -31,6 +31,17 @@ function RapierReady({ children }) {
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
   const [visible, setVisible] = useState(false);
   const [showLanyard, setShowLanyard] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fadeTimer = setTimeout(() => setVisible(true), 1900);
@@ -40,6 +51,8 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
       clearTimeout(lanyardTimer);
     };
   }, []);
+
+  if (isMobile) return null;
 
   return (
     <div

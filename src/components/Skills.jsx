@@ -3,7 +3,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { skills as skillsData } from "../../constants/index.js";
 import TiltedCard from "../components/TiltedCard.jsx"; // adjust path if needed
-const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
 
 const FOCUS_SETTINGS = {
     blurAmount: 5,
@@ -157,23 +156,21 @@ const Skills = () => {
                                     </motion.div>
                                 )}
 
-                                {!isMobile && (
-                                    <TiltedCard
-                                        imageSrc={skill.logo}
-                                        altText={skill.name}
-                                        captionText={skill.name}
-                                        containerHeight="auto"
-                                        containerWidth="100%"
-                                        imageHeight={undefined}
-                                        imageWidth="100%"
-                                        scaleOnHover={1.06}
-                                        rotateAmplitude={16}
-                                        showMobileWarning={false}
-                                        showTooltip={false}
-                                        displayOverlayContent={false}
-                                        aspectRatio={1}
-                                    />
-                                )}
+                                <TiltedCard
+                                    imageSrc={skill.logo}
+                                    altText={skill.name}
+                                    captionText={skill.name}
+                                    containerHeight="auto"
+                                    containerWidth="100%"
+                                    imageHeight={undefined}
+                                    imageWidth="100%"
+                                    scaleOnHover={1.06}
+                                    rotateAmplitude={16}
+                                    showMobileWarning={false}
+                                    showTooltip={false}
+                                    displayOverlayContent={false}
+                                    aspectRatio={1}
+                                />
                             </motion.div>
                         );
                     })}
